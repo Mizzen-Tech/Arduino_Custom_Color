@@ -1,35 +1,40 @@
-// Define the pins for the LED colors
 const int redPin = 9;
 const int greenPin = 10;
 const int bluePin = 11;
+
+// Adjust this to change the speed (lower is faster)
+//int fadeSpeed = 30; 
 
 void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
+}
 
-  // Start with all pins HIGH (which means the LED is OFF for Common Anode)
-  digitalWrite(redPin, HIGH);
-  digitalWrite(greenPin, HIGH);
-  digitalWrite(bluePin, HIGH);
+void setColor(int r, int g, int b) {
+  analogWrite(redPin, 255 - r);
+  analogWrite(greenPin, 255 - g);
+  analogWrite(bluePin, 255 - b);
 }
 
 void loop() {
-  // 1. Red ON (Pulling pin LOW turns it on)
-  digitalWrite(redPin, LOW);
-  digitalWrite(greenPin, HIGH);
-  digitalWrite(bluePin, LOW);
-  delay(1000);
+  int r, g, b;
 
-  // 2. Green ON
-  digitalWrite(redPin, HIGH);
-  digitalWrite(greenPin, LOW);
-  digitalWrite(bluePin, HIGH);
-  delay(1000);
+  // Color 1
+  {
+    setColor(225, 72, 100);
+    delay(1000);
+  }
 
-  // 3. Blue ON
-  digitalWrite(redPin, HIGH);
-  digitalWrite(greenPin, HIGH);
-  digitalWrite(bluePin, LOW);
-  delay(1000);
+ // Color 2
+  {
+    setColor(0, 225, 0);
+    delay(1000);
+  }
+
+ // Color 3
+  {
+    setColor(0, 0, 225);
+    delay(1000);
+  }
 }
